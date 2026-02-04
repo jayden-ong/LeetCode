@@ -19,9 +19,7 @@ class Solution:
                         curr_min = min(curr_min, curr)
                         curr += nums[i + 1]
                     third_curr = max(third_curr, curr)
-                    start_index = i
                 elif nums[i] > nums[i + 1]:
-                    start_index = i
                     if started_increasing:
                         break
                 else:
@@ -29,8 +27,8 @@ class Solution:
                     if first_part:
                         started_increasing, curr, curr_min, start_index, third_curr = False, 0, 0, i, float('-inf')
                     else:
-                        start_index = i
                         break
+                start_index += 1
                 
             return (start_index, curr - curr_min, third_curr)
         
