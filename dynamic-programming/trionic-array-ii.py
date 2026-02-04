@@ -32,7 +32,7 @@ class Solution:
                 start_index += 1
                 
             curr += nums[start_index]
-            if len(nums) - original_start == 2:
+            if start_index - original_start <= 2:
                 third_curr = curr
             return (start_index, curr - curr_min, max(third_curr, curr))
         
@@ -67,6 +67,10 @@ class Solution:
             
             curr_index, new_first_part_max, third_part_max = find_part(curr_index, False)
             answer = max(answer, first_part_max + second_part + third_part_max)
+            print(first_part_max)
+            print(second_part)
+            print(third_part_max)
             first_part_max = new_first_part_max
+            print(first_part_max)
         return answer
         
