@@ -14,10 +14,10 @@ class Solution:
                 if nums[i] < nums[i + 1]:
                     if not started_increasing:
                         started_increasing = True
-                        curr = nums[i] + nums[i + 1]
+                        curr = nums[i]
                     else:
                         curr_min = min(curr_min, curr)
-                        curr += nums[i + 1]
+                        curr += nums[i]
                     third_curr = max(third_curr, curr)
                 elif nums[i] > nums[i + 1]:
                     if started_increasing:
@@ -30,7 +30,8 @@ class Solution:
                         break
                 start_index += 1
                 
-            return (start_index, curr - curr_min, third_curr)
+            curr += nums[start_index]
+            return (start_index, curr - curr_min, max(third_curr, curr))
         
         answer = float('-inf')
         curr_index, first_part_max = 0, None
