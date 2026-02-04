@@ -7,6 +7,7 @@ class Solution:
         #   the second part must start with index q
         #       Use prefix sum -- take the max until the next decreasing part
         def find_part(curr_index, first_part):
+            original_start = curr_index
             start_index = curr_index
             started_increasing = False
             curr, curr_min, third_curr = 0, 0, float('-inf')
@@ -31,6 +32,8 @@ class Solution:
                 start_index += 1
                 
             curr += nums[start_index]
+            if len(nums) - original_start == 2:
+                third_curr = curr
             return (start_index, curr - curr_min, max(third_curr, curr))
         
         answer = float('-inf')
