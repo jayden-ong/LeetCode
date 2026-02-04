@@ -16,10 +16,11 @@ class Solution:
                     if not started_increasing:
                         started_increasing = True
                         curr = nums[i]
+                        third_curr = nums[i] + nums[i + 1]
                     else:
                         curr_min = min(curr_min, curr)
                         curr += nums[i]
-                    third_curr = max(third_curr, curr)
+                        third_curr = max(third_curr, curr + nums[i + 1])
                 elif nums[i] > nums[i + 1]:
                     if started_increasing:
                         break
@@ -30,11 +31,7 @@ class Solution:
                     else:
                         break
                 start_index += 1
-                
-            curr += nums[start_index]
-            if start_index - original_start <= 2:
-                third_curr = curr
-            return (start_index, curr - curr_min, max(third_curr, curr))
+            return (start_index, curr + nums[start_index] - curr_min, third_curr)
         
         answer = float('-inf')
         curr_index, first_part_max = 0, None
@@ -67,10 +64,6 @@ class Solution:
             
             curr_index, new_first_part_max, third_part_max = find_part(curr_index, False)
             answer = max(answer, first_part_max + second_part + third_part_max)
-            print(first_part_max)
-            print(second_part)
-            print(third_part_max)
             first_part_max = new_first_part_max
-            print(first_part_max)
         return answer
         
