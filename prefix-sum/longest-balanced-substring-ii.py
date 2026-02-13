@@ -14,8 +14,9 @@ class Solution:
 
         # Two characters
         # max diff between characters is 2 * n
-        second = i = 0
+        second = 0
         for x, y in [("a", "b"), ("a", "c"), ("b", "c")]:
+            i = 0
             while i < len(s):
                 while i < len(s) and s[i] != x and s[i] != y:
                     i += 1
@@ -28,13 +29,13 @@ class Solution:
                         curr_diff += 1
                     else:
                         curr_diff -= 1
-                    
+                        
                     if curr_diff in earliest:
                         second = max(second, i - earliest[curr_diff])
                     else:
                         earliest[curr_diff] = i
                     i += 1
-
+                
         third = 0
         curr_a = curr_b = curr_c = 0
         earliest = {}
