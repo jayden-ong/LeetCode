@@ -2,7 +2,7 @@ class Solution:
     def longestBalanced(self, s: str) -> int:
         # One character
         first, prev_char = 1, s[0]
-        curr = 0
+        curr = 1
         for i in range(1, len(s) + 1):
             if i != len(s) and s[i] == prev_char:
                 curr += 1
@@ -54,7 +54,4 @@ class Solution:
             else:
                 earliest[(diff1, diff2)] = i
         # Three characters
-        print(first)
-        print(second)
-        print(third)
         return max([first, second, third])
