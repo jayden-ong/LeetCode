@@ -1,6 +1,6 @@
 class Solution:
     def readBinaryWatch(self, turnedOn: int) -> List[str]:
-        if turnedOn > 8 or turnedOn == 0:
+        if turnedOn > 8:
             return []
         
         hours_lights = defaultdict(list)
