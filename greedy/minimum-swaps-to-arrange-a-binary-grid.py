@@ -19,16 +19,21 @@ class Solution:
         #   There are two rows with the same number of zeros -- the larger row becomes the last row
         # print(desired_row_to_row)
         answer = 0
-        # Sort in descending order
-        # print(list_to_sort)
-        for i in range(len(grid) - 1, -1, -1):
-            for j in range(i):
-                if list_to_sort[j] < list_to_sort[j + 1]:
-                    answer += 1
-                    list_to_sort[j], list_to_sort[j + 1] = list_to_sort[j + 1], list_to_sort[j]
-            # print(list_to_sort)
-        
-        for i, num in enumerate(list_to_sort):
-            if num < len(grid) - i - 1:
+        for i in range(len(list_to_sort)):
+            if list_to_sort[i] >= len(grid) - i - 1:
+                continue
+            
+            chosen = None
+            for j in range(i + 1, len(grid)):
+                if list_to_sort[j] >= len(grid) - i - 1:
+                    chosen = j
+                    break
+            
+            if not chosen:
                 return -1
+            
+            for j in range(chosen, i, -1):
+                list_to_sort[j], list_to_sort[j - 1] = list_to_sort[j - 1], list_to_sort[j]
+                answer += 1
+        
         return answer
