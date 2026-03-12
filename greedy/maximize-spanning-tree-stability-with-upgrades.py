@@ -41,7 +41,7 @@ class Solution:
         # We can add n - 1 - edges_added more edges
         #   We want to boost the edges with the samllest strength first
         #   Start boosting when k == n - 1 - edges_added
-        start_boosting = k == n - 1 - edges_added
+        start_boosting = k >= n - 1 - edges_added
 
         # We have already added all of the required edges
         # The goal is to greedily add all necessary edges and giving them a boost 
@@ -52,7 +52,7 @@ class Solution:
                 if start_boosting:
                     answer = min(answer, 2 * strength)
                 else:
-                    start_boosting = k == n - 1 - edges_added
+                    start_boosting = k >= n - 1 - edges_added
                 
                 if edges_added == n - 1:
                     return answer
