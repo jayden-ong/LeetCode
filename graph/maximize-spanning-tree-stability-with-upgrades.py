@@ -48,6 +48,9 @@ class Solution:
             if curr_strength < required_strength:
                 return False
             
+            if num_edges == n - 1:
+                return True
+            
             # We can only add edges that causes a change to the reps
             for strength, node1, node2 in edges_by_strength:
                 if dsu.find_rep(node1) != dsu.find_rep(node2):
