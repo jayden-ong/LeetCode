@@ -53,6 +53,7 @@ class Solution:
                     answer = min(answer, 2 * strength)
                 else:
                     start_boosting = k >= n - 1 - edges_added
+                    answer = min(answer, strength)
                 
                 if edges_added == n - 1:
                     return answer
