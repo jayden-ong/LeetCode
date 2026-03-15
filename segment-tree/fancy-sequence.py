@@ -1,5 +1,5 @@
 class Fancy:
-
+    MOD = pow(10, 9) + 7
     def __init__(self):
         self.vals = []
         self.length = 0
@@ -16,7 +16,6 @@ class Fancy:
         self.operations.append((self.length, "multiply", m))
         
     def getIndex(self, idx: int) -> int:
-        print(self.vals)
         if idx >= self.length:
             return -1
         
@@ -31,6 +30,7 @@ class Fancy:
                 answer += amount
             else:
                 answer *= amount
+            answer %= MOD
         return answer
 
 
