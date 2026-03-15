@@ -1,37 +1,26 @@
 class Fancy:
     def __init__(self):
         self.vals = []
-        self.length = 0
-        self.operations = []
+        self.MOD = pow(10, 9) + 7
+        self.global_mult = 1
+        self.global_add = 0
 
     def append(self, val: int) -> None:
-        self.vals.append(val)
-        self.length += 1
+        # Want to convert value into its base form
+        start_val = (val - self.global_add + self.MOD) - self.MOD
+        self.vals.append(start_val * pow(self.global_mult, self.MOD - 2, self.MOD) % self.MOD)
 
     def addAll(self, inc: int) -> None:
-        self.operations.append((self.length, "add", inc))
+        self.global_add = (self.global_add + inc) % self.MOD
 
     def multAll(self, m: int) -> None:
-        self.operations.append((self.length, "multiply", m))
+        self.global_add = (self.global_add * m) % self.MOD
+        self.global_mult = (self.global_mult * m) % self.MOD
         
     def getIndex(self, idx: int) -> int:
-        MOD = pow(10, 9) + 7
-        if idx >= self.length:
+        if idx >= len(self.vals):
             return -1
-        
-        answer = self.vals[idx]
-        ops_reverse = self.operations[::-1]
-        for i in range(len(self.operations) - 1, -1, -1):
-            last_index, operation, amount = ops_reverse[i]
-            if idx >= last_index:
-                continue
-            
-            if operation == "add":
-                answer += amount
-            else:
-                answer *= amount
-            answer %= MOD
-        return answer
+        return (self.vals[idx] * self.global_mult + self.global_add) % self.MOD
 
 
 # Your Fancy object will be instantiated and called as such:
