@@ -1,6 +1,7 @@
 class Solution:
     def largestSubmatrix(self, matrix: List[List[int]]) -> int:
         mod_matrix = [[0 for _ in range(len(matrix[0]))] for _ in range(len(matrix))]
+        answer = 0
         for i in range(len(matrix)):
             for j in range(len(matrix[0])):
                 curr_val = 0
@@ -9,10 +10,9 @@ class Solution:
                         curr_val += mod_matrix[i - 1][j]
                     curr_val += matrix[i][j]
                 mod_matrix[i][j] = curr_val
-            mod_matrix[i].sort(reverse=True)
-        
-        answer = 0
-        for i in range(len(matrix)):
+            
+            curr_row = sorted(mod_matrix[i], reverse=True)
             for j in range(len(matrix[0])):
-                answer = max(answer, mod_matrix[i][j] * (j + 1))
+                answer = max(answer, curr_row[j] * (j + 1))
+        
         return answer
