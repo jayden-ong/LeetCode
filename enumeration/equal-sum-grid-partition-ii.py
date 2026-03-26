@@ -32,10 +32,10 @@ class Solution:
             print(desired_element)
             if desired_element < 0:
                 # Only option is the corners if we are looking at the top row
-                if (i == 0 and abs(desired_element) == grid[i][0] or abs(desired_element) == grid[i][len(grid[0]) - 1]) or (0 < i <= len(grid) - 2 and grid_set_up[abs(desired_element)] > 0):
+                if (i == 0 and abs(desired_element) == grid[i][0] or abs(desired_element) == grid[i][len(grid[0]) - 1]) or (0 < i <= len(grid) - 2 and grid_set_up[abs(desired_element)] > 0 and (len(grid[0]) > 1 or grid[0][0] == abs(desired_element))):
                     return True
             else:
-                if (i == len(grid) - 2 and abs(desired_element) == grid[i][0] or abs(desired_element) == grid[i][len(grid[0]) - 1]) or (0 < i <= len(grid) - 2 and grid_set_down[abs(desired_element)] > 0):
+                if (i == len(grid) - 2 and abs(desired_element) == grid[i + 1][0] or abs(desired_element) == grid[i + 1][len(grid[0]) - 1]) or (0 < i <= len(grid) - 2 and grid_set_down[abs(desired_element)] > 0 and (len(grid[0]) > 1 or grid[len(grid) - 1][0] == abs(desired_element))):
                     return True
 
         grid_set_left = defaultdict(int)
@@ -53,10 +53,10 @@ class Solution:
             #print(grid_set_right)
             #print(desired_element)
             if desired_element < 0:
-                if (j == 0 and abs(desired_element) == grid[0][j] or abs(desired_element) == grid[len(grid) - 1][j]) or (0 < j <= len(grid[0]) - 2 and grid_set_left[abs(desired_element)] > 0):
+                if (j == 0 and abs(desired_element) == grid[0][j] or abs(desired_element) == grid[len(grid) - 1][j]) or (0 < j <= len(grid[0]) - 2 and grid_set_left[abs(desired_element)] > 0 and (len(grid) > 1 or grid[0][0] == abs(desired_element))):
                     return True
             else:
-                if (j == len(grid[0]) - 2 and abs(desired_element) == grid[0][j + 1] or abs(desired_element) == grid[len(grid) - 1][j + 1]) or (0 < j <= len(grid[0]) - 2 and grid_set_right[abs(desired_element)] > 0):
+                if (j == len(grid[0]) - 2 and abs(desired_element) == grid[0][j + 1] or abs(desired_element) == grid[len(grid) - 1][j + 1]) or (0 < j <= len(grid[0]) - 2 and grid_set_right[abs(desired_element)] > 0 and (len(grid) > 1 or grid[0][len(grid) - 1] == abs(desired_element))):
                     return True
         return False
             
