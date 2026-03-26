@@ -56,7 +56,7 @@ class Solution:
                 if (j == 0 and abs(desired_element) == grid[0][j] or abs(desired_element) == grid[len(grid) - 1][j]) or (0 < j <= len(grid[0]) - 2 and grid_set_left[abs(desired_element)] > 0 and (len(grid) > 1 or grid[0][0] == abs(desired_element))):
                     return True
             else:
-                if (j == len(grid[0]) - 2 and abs(desired_element) == grid[0][j + 1] or abs(desired_element) == grid[len(grid) - 1][j + 1]) or (0 < j <= len(grid[0]) - 2 and grid_set_right[abs(desired_element)] > 0 and (len(grid) > 1 or grid[0][len(grid) - 1] == abs(desired_element))):
+                if (j == len(grid[0]) - 2 and abs(desired_element) == grid[0][j + 1] or abs(desired_element) == grid[len(grid) - 1][j + 1]) or (0 < j <= len(grid[0]) - 2 and grid_set_right[abs(desired_element)] > 0 and (len(grid) > 1 or grid[0][len(grid[0]) - 1] == abs(desired_element))):
                     return True
         return False
             
