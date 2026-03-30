@@ -9,20 +9,14 @@ class Solution:
                 odd_chars[s1[i]] += 1
         
         for i in range(len(s1)):
-            if s1[i] == s2[i]:
-                if i % 2 == 0:
-                    even_chars[s1[i]] -= 1
+            if i % 2 == 0:
+                if even_chars[s2[i]] > 0:
+                    even_chars[s2[i]] -= 1
                 else:
-                    odd_chars[s1[i]] -= 1
+                    return False
             else:
-                if i % 2 == 0:
-                    if even_chars[s2[i]] > 0:
-                        even_chars[s2[i]] -= 1
-                    else:
-                        return False
+                if odd_chars[s2[i]] > 0:
+                    odd_chars[s2[i]] -= 1
                 else:
-                    if odd_chars[s2[i]] > 0:
-                        odd_chars[s2[i]] -= 1
-                    else:
-                        return False
+                    return False
         return True
