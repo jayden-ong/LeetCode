@@ -21,10 +21,11 @@ class Solution:
                     for k in range(num_chars_needed):
                         answer.append("a")
                         answer_fixed.append("F")
-        
+        print(answer)
+        print(answer_fixed)
         for i, condition in enumerate(str1):
             # Have to make a modification
-            if condition == "F" and answer[i:i + len(str2)] == str2:
+            if condition == "F" and ''.join(answer[i:i + len(str2)]) == str2:
                 fixed = False
                 for j in range(i, i + len(str2)):
                     if answer_fixed[i] == "F" and answer[j] == str2[j - i]:
