@@ -2,6 +2,8 @@ class Solution:
     def maximumAmount(self, coins: List[List[int]]) -> int:
         dp_coins = [[[float('-inf'), float('-inf'), float('-inf')] for _ in range(len(coins[0]))] for _ in range(len(coins))]
         dp_coins[0][0][0] = coins[0][0]
+        if coins[0][0] < 0:
+            dp_coins[0][0][1] = 0
         curr_queue = deque()
         curr_queue.append((0, 0))
         visited = set()
@@ -9,7 +11,7 @@ class Solution:
             curr_row, curr_col = curr_queue.popleft()
             if (curr_row, curr_col) in visited:
                 continue
-            print((curr_row, curr_col))
+            
             # Update current cell
             if curr_row != 0 or curr_col != 0:
                 if curr_row > 0 and curr_col > 0:
