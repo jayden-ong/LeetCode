@@ -24,7 +24,7 @@ class Solution:
                 if coins[curr_row][curr_col] >= 0:
                     dp_coins[curr_row][curr_col] = [most_coins[0] + coins[curr_row][curr_col], most_coins[1] + coins[curr_row][curr_col], most_coins[2] + coins[curr_row][curr_col]]
                 else:
-                    dp_coins[curr_row][curr_col] = [most_coins[0] + coins[curr_row][curr_col], most_coins[0], most_coins[1]]
+                    dp_coins[curr_row][curr_col] = [most_coins[0] + coins[curr_row][curr_col], max(most_coins[0], most_coins[1] + coins[curr_row][curr_col]), max(most_coins[1], most_coins[2] + coins[curr_row][curr_col])]
 
             # Add cell below
             if curr_row < len(coins) - 1 and (curr_row + 1, curr_col) not in visited:
