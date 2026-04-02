@@ -35,5 +35,4 @@ class Solution:
                 curr_queue.append((curr_row, curr_col + 1))
             
             visited.add((curr_row, curr_col))
-        print(dp_coins)
         return max(dp_coins[-1][-1])
