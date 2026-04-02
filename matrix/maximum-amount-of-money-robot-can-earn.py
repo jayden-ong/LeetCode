@@ -21,9 +21,8 @@ class Solution:
                 else:
                     most_coins = dp_coins[curr_row][curr_col - 1]
                 
-                if curr_row != 0 and curr_col != 0:
-                    if coins[curr_row][curr_col] >= 0:
-                        dp_coins[curr_row][curr_col] = [most_coins[0] + coins[curr_row][curr_col], most_coins[1] + coins[curr_row][curr_col], most_coins[2] + coins[curr_row][curr_col]]
+                if coins[curr_row][curr_col] >= 0:
+                    dp_coins[curr_row][curr_col] = [most_coins[0] + coins[curr_row][curr_col], most_coins[1] + coins[curr_row][curr_col], most_coins[2] + coins[curr_row][curr_col]]
                 else:
                     dp_coins[curr_row][curr_col] = [most_coins[0] + coins[curr_row][curr_col], most_coins[0], most_coins[1]]
 
@@ -36,5 +35,5 @@ class Solution:
                 curr_queue.append((curr_row, curr_col + 1))
             
             visited.add((curr_row, curr_col))
-            
+        print(dp_coins)
         return max(dp_coins[-1][-1])
