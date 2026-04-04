@@ -13,4 +13,4 @@ class Solution:
         
         for i in range(num_columns):
             answer += ''.join(segments[i])
-        return answer.strip(" ")
+        return answer.rstrip(" ")
