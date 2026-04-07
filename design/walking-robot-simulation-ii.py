@@ -9,6 +9,7 @@ class Robot:
     def step(self, num: int) -> None:
         rotation_direction = {"North" : "West", "East" : "North", "South" : "East", "West" : "South"}
         direction_to_step = {"North" : (1, 0), "East" : (0, 1), "South" : (-1, 0), "West" : (0, -1)}
+        num_tiles = (self.top + 1) * 2 + (self.right + 1) * 2 - 4
         # If you hit an edge and you still have steps, left, you will move counterclockwise until you run out of step
         while num > 0:
             if self.dir == "North":
@@ -30,9 +31,10 @@ class Robot:
             
             if num > 0:
                 # Want to figure out how many rotations we do around the area
-                num_tiles = (self.top + 1) * 2 + (self.right + 1) * 2 - 4
-                num %= num_tiles
-                self.dir = rotation_direction[self.dir]
+                if num >= num_tiles:
+                    num %= num_tiles
+                else:
+                    self.dir = rotation_direction[self.dir]
 
     def getPos(self) -> List[int]:
         return [self.pos[1], self.pos[0]]
