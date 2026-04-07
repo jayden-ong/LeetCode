@@ -1,7 +1,8 @@
 class Robot:
 
     def __init__(self, width: int, height: int):
-        self.top_right = (height, width)
+        self.top = height - 1
+        self.right = width - 1
         self.pos = [0, 0]
         self.dir = "East"
 
@@ -9,11 +10,24 @@ class Robot:
         rotation_direction = {"North" : "West", "East" : "North", "South" : "East", "West" : "South"}
         direction_to_step = {"North" : (1, 0), "East" : (0, 1), "South" : (-1, 0), "West" : (0, -1)}
         while num > 0:
-            new_row, new_col = self.pos[0] + direction_to_step[self.dir][0], self.pos[1] + direction_to_step[self.dir][1]
-            if 0 <= new_row < self.top_right[0] and 0 <= new_col < self.top_right[1]:
-                self.pos = [new_row, new_col]
-                num -= 1
+            if self.dir == "North":
+                steps_taken = min(num, self.top - self.pos[0])
+                num -= steps_taken
+                self.pos[0] += steps_taken
+            elif self.dir == "South":
+                steps_taken = min(num, self.pos[0])
+                num = max(num - self.pos[0], 0)
+                self.pos[0] -= steps_taken
+            elif self.dir == "East":
+                steps_taken = min(num, self.right - self.pos[1])
+                num = max(num - (self.right - self.pos[1]), 0)
+                self.pos[1] += steps_taken
             else:
+                steps_taken = min(num, self.pos[1])
+                num = max(num - self.pos[1], 0)
+                self.pos[1] -= steps_taken
+            
+            if num > 0:
                 self.dir = rotation_direction[self.dir]
 
     def getPos(self) -> List[int]:
