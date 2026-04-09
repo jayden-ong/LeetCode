@@ -11,17 +11,18 @@ class Solution:
         
         difference = [1] * (len(nums) + int(len(nums) ** 0.5))
         for k in range(1, int(len(nums) ** 0.5)):
-            if len(buckets[k]) == 0:
+            if not buckets[k]:
                 continue
             
             for left, right, multiply in buckets[k]:
                 difference[left] = difference[left] * multiply % MOD
                 next_right = ((right - left) // k + 1) * k + left
                 difference[next_right] = difference[next_right] * pow(multiply, MOD - 2, MOD) % MOD
-                for i in range(k, len(nums)):
-                    difference[i] = difference[i] * difference[i - k] % MOD
-                for i in range(len(nums)):
-                    nums[i] = nums[i] * difference[i] % MOD
+            for i in range(k, len(nums)):
+                difference[i] = difference[i] * difference[i - k] % MOD
+            for i in range(len(nums)):
+                nums[i] = nums[i] * difference[i] % MOD
+        
         answer = nums[0]
         for i in range(1, len(nums)):
             answer ^= nums[i]
