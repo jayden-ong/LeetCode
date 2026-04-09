@@ -13,7 +13,7 @@ class Solution:
         for k in range(1, int(len(nums) ** 0.5)):
             if not buckets[k]:
                 continue
-            
+            difference[:] = [1] * len(difference)
             for left, right, multiply in buckets[k]:
                 difference[left] = difference[left] * multiply % MOD
                 next_right = ((right - left) // k + 1) * k + left
