@@ -2,7 +2,6 @@ class UnionFind:
     def __init__(self, num_entries):
         self.parent = [i for i in range(num_entries)]
         self.size = [1] * num_entries
-        self.individuals_left = num_entries
     
     def find_parent(self, index):
         if index == self.parent[index]:
@@ -17,7 +16,6 @@ class UnionFind:
         else:
             self.parent[index2] = index1
             self.size[index2] += self.size[index1]
-        self.individuals_left -= 1
     
     def combine(self, index1, index2):
         parent1, parent2 = self.find_parent(index1), self.find_parent(index2)
@@ -32,10 +30,10 @@ class Solution:
         for i in range(len(grid)):
             for j in range(len(grid[0])):
                 if i > 0 and grid[i][j] == grid[i - 1][j]:
-                    if union_find.combine(i * len(grid) + j, (i - 1) * len(grid) + j):
+                    if union_find.combine(i * len(grid[0]) + j, (i - 1) * len(grid[0]) + j):
                         return True
                 
                 if j > 0 and grid[i][j] == grid[i][j - 1]:
-                    if union_find.combine(i * len(grid) + j, i * len(grid) + j - 1):
+                    if union_find.combine(i * len(grid[0]) + j, i * len(grid[0]) + j - 1):
                         return True
         return False
