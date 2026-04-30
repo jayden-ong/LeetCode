@@ -31,5 +31,6 @@ class Solution:
             
             if curr_col + 1 < len(grid[0]) and (curr_row, curr_col + 1) not in queued:
                 cells_queue.append((curr_row, curr_col + 1))
+                queued.add((curr_row, curr_col + 1))
         
         return max(dp[-1][-1])
