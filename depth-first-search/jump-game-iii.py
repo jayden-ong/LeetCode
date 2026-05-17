@@ -2,8 +2,8 @@ class Solution:
     def canReach(self, arr: List[int], start: int) -> bool:
         index_used = set()
         queue = deque()
-        queue.append(0)
-        index_used.add(0)
+        queue.append(start)
+        index_used.add(start)
         while queue:
             curr = queue.popleft()
             if arr[curr] == 0:
