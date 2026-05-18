@@ -15,9 +15,11 @@ class Solution:
 
             if i - 1 >= 0 and i - 1 not in visited:
                 queue.append((i - 1, num_steps + 1))
+                visited.add(i - 1)
             
-            if i + 1 < len(arr) - 1 and i + 1 not in visited:
+            if i + 1 < len(arr) and i + 1 not in visited:
                 queue.append((i + 1, num_steps + 1))
+                visited.add(i + 1)
             
             for new_index in val_to_index[arr[i]]:
                 if new_index != i and new_index not in visited:
