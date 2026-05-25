@@ -11,6 +11,6 @@ class Solution:
                 
                 for j in range(max(i + minJump, end + 1), min(i + maxJump + 1, len(s))):
                     queue.append(j)
-                end = i + minJump
+                end = i + maxJump
         return False
         
