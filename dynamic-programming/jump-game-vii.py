@@ -27,6 +27,5 @@ class Solution:
                     if j not in visited:
                         visited.add(j)
                         queue.append(j)
-            print(queue)
         return False
         
