@@ -1,26 +1,47 @@
+class Node:
+    def __init__(self):
+        self.children, self.min_length, self.index = {}, float('inf'), float('inf')
+
+class Tree:
+    def __init__(self):
+        self.root = Node()
+    
+    def insert(self, string, index):
+        curr = self.root
+        if len(string) < curr.min_length:
+            curr.min_length = len(string)
+            curr.index = index
+        
+        for char in string:
+            if char not in curr.children:
+                curr.children[char] = Node()
+            curr = curr.children[char]
+
+            if len(string) < curr.min_length:
+                curr.min_length = len(string)
+                curr.index = index
+    
+    def query(self, string):
+        curr = self.root
+
+        for char in string:
+            if char in curr.children:
+                curr = curr.children[char]
+            else:
+                break
+        
+        return curr.index
+
 class Solution:
     def stringIndices(self, wordsContainer: List[str], wordsQuery: List[str]) -> List[int]:
+        tree = Tree()
+
+        for i, word in enumerate(wordsContainer):
+            word_r = word[::-1]
+            tree.insert(word_r, i)
+        
         answer = []
-        def find_longest_suffix(query_word, container_word, starting_index):
-            query_word_r, container_word_r = query_word[::-1], container_word[::-1]
-            # No point since we have already found a longer match
-            if starting_index > len(query_word):
-                return 0
-            
-            for i in range(max(0, starting_index - 1), min(len(container_word), len(query_word))):
-                if query_word_r[:i + 1] != container_word_r[:i + 1]:
-                    return i
-            return min(len(query_word), len(container_word))
-
-
-        for word in wordsQuery:
-            longest_suffix_length, answer_index = 0, -1
-            for i, possible_answer in enumerate(wordsContainer):
-                suffix_length = find_longest_suffix(word, possible_answer, longest_suffix_length)
-                if answer_index == -1 or suffix_length > longest_suffix_length:
-                    longest_suffix_length, answer_index = suffix_length, i
-                elif suffix_length == longest_suffix_length and len(wordsContainer[i]) < len(wordsContainer[answer_index]):
-                    answer_index = i
-            answer.append(answer_index)
-                    
+        for query in wordsQuery:
+            query_r = query[::-1]
+            answer.append(tree.query(query_r))
         return answer
