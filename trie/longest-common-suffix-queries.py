@@ -8,7 +8,7 @@ class Solution:
                 return 0
             
             for i in range(max(0, starting_index - 1), min(len(container_word), len(query_word))):
-                if query_word_r[:i] != container_word_r[:i]:
+                if query_word_r[:i + 1] != container_word_r[:i + 1]:
                     return i
             return min(len(query_word), len(container_word))
 
