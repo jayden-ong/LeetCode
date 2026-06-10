@@ -4,7 +4,7 @@ class Solution:
         diff_combinations = defaultdict(int)
         for i in range(len(nums)):
             curr_min = curr_max = nums[i]
-            for j in range(i + 1, len(nums)):
+            for j in range(i, len(nums)):
                 curr_min = min(curr_min, nums[j])
                 curr_max = max(curr_max, nums[j])
                 if -(curr_max - curr_min) not in diff_combinations:
