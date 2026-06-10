@@ -11,8 +11,6 @@ class Solution:
                     heapq.heappush(max_diffs_heap, -(curr_max - curr_min))
                 diff_combinations[-(curr_max - curr_min)] += 1
 
-        print(diff_combinations)
-        print(max_diffs_heap)
         num_selections = k
         answer = 0
         while num_selections > 0:
