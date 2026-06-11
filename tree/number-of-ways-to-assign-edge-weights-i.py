@@ -18,4 +18,4 @@ class Solution:
                 if destination not in visited:
                     node_queue.append((destination, curr_distance + 1))
         
-        return 2 ^^ (max_depth - 1) % MOD
+        return 2 ** (max_depth - 1) % MOD
