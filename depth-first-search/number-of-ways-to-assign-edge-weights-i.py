@@ -18,9 +18,4 @@ class Solution:
                 if destination not in visited:
                     node_queue.append((destination, curr_distance + 1))
         
-        answer = 0
-        max_depth_fact = math.factorial(max_depth)
-        for i in range(1, max_depth + 1, 2):
-            answer += max_depth_fact // (math.factorial(i) * math.factorial(max_depth - i))
-            answer = answer % MOD
-        return answer
+        return pow(2, max_depth - 1)
