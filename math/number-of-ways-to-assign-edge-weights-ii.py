@@ -2,7 +2,10 @@ class Solution:
     def assignEdgeWeights(self, edges: List[List[int]], queries: List[List[int]]) -> List[int]:
         MOD = pow(10, 9) + 7
         num_nodes = len(edges) + 1
-        powers_of_two = [(2 ** i % MOD) for i in range(len(edges))]
+        curr, powers_of_two = 1, [1]
+        for i in range(1, len(edges)):
+            curr = 2 * curr % MOD
+            powers_of_two.append(curr)
 
         parents = [-1] * (num_nodes + 1)
         depths = [0] * (num_nodes + 1)
