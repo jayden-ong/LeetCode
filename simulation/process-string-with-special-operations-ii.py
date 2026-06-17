@@ -1,15 +1,30 @@
 class Solution:
     def processStr(self, s: str, k: int) -> str:
-        answer = ""
         for char in s:
             if char == "*":
-                answer = answer[:-1]
+                curr_length = max(curr_length - 1, 0)
             elif char == "#":
-                answer = answer + answer
+                curr_length *= 2
             elif char == "%":
-                answer = answer[::-1]
+                continue
             else:
-                answer += char
-        if k >= len(answer):
+                curr_length += 1
+
+        if k >= curr_length:
             return '.'
-        return answer[k]
+        
+        for char in s[::-1]:
+            if char == "*":
+                curr_length += 1
+            elif char == "#":
+                if k >= (length + 1) // 2:
+                    k -= length // 2
+                length = (length + 1) // 2
+            elif char == "%":
+                k = length - k - 1
+            else:
+                if k + 1 == length:
+                    return char
+                length -= 1
+                continue
+        return "."
