@@ -21,9 +21,9 @@ class Solution:
                 visited.add(curr)
                 while nums_dict[curr] >= 1:
                     curr_answer += 2
-                    curr **= 2
-                    visited.add(curr)
                     if nums_dict[curr] == 1:
                         break
+                    curr **= 2
+                    visited.add(curr)
                 answer = max(answer, curr_answer)
         return answer
