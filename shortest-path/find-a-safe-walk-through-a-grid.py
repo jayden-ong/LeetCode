@@ -7,6 +7,9 @@ class Solution:
         if grid[0][0] == 1:
             curr_health -= 1
         
+        if curr_health == 0:
+            return False
+        
         heap, visited = [], set()
         heap.append((-curr_health, 0, 0))
         directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
