@@ -4,6 +4,9 @@ class Solution:
             return 0 <= curr_row < len(grid) and 0 <= curr_col < len(grid[0])
         
         curr_health = health
+        if grid[0][0] == 1:
+            curr_health -= 1
+        
         heap, visited = [], set()
         heap.append((-curr_health, 0, 0))
         directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
