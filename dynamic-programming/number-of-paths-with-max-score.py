@@ -27,5 +27,5 @@ class Solution:
                 
                 if board[curr_row][curr_col] != 'E' and curr_state[1] > 0:
                     curr_state[0] += int(board[curr_row][curr_col])
-        
-        return [dp[0][0][0] % MOD, dp[0][0][1]]
+
+        return [dp[0][0][0], dp[0][0][1] % MOD]
