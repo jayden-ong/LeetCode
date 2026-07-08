@@ -1,3 +1,7 @@
+MOD, MAX = 1000000007, 100001
+pow = [1] * MAX
+for i in range(1, MAX):
+    pow[i] = (pow[i - 1] * 10) % MOD
 class Solution:
     def sumAndMultiply(self, s: str, queries: List[List[int]]) -> List[int]:
         '''
@@ -30,13 +34,6 @@ class Solution:
                 answer.append((digits_multiple * curr_sum) % MOD)
         return answer
         '''
-        MOD, MAX = 1000000007, 100001
-pow = [1] * MAX
-for i in range(1, MAX):
-    pow[i] = (pow[i - 1] * 10) % MOD
-
-class Solution:
-    def sumAndMultiply(self, s: str, queries: list[list[int]]) -> list[int]:
         n, res = len(s), []
         A, B, Len = [[0] * (n + 1) for _ in range(3)]
 
