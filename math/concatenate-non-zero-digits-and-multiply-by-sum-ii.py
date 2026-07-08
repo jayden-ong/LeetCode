@@ -19,6 +19,6 @@ class Solution:
             else:
                 curr_sum = prefix_sum[right] - prefix_sum[left - 1]
                 diff_in_lengths = len(str(prefix_digits_int[right])) - len(str(prefix_digits_int[left - 1]))
-                digits_multiple = (prefix_digits_int[right] - prefix_digits_int[left - 1] * pow(10, diff_in_lengths)) % MOD
+                digits_multiple = (prefix_digits_int[right] - prefix_digits_int[left - 1] * pow(10, diff_in_lengths))
                 answer.append((digits_multiple * curr_sum) % MOD)
         return answer
