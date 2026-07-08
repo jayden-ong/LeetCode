@@ -5,9 +5,10 @@ class Solution:
         prefix_sum = []
         curr_sum = 0
         curr_length, prefix_length = 0, []
-        ten_pows = [1] * 100001
-        for i in range(1, 100001):
+        ten_pows = [1] * len(s)
+        for i in range(1, len(s)):
             ten_pows[i] = (ten_pows[i - 1] * 10) % MOD
+        
         for digit in s:
             if digit != "0":
                 curr_sum += int(digit)
