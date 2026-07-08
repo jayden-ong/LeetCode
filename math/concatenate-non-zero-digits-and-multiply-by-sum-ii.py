@@ -5,6 +5,15 @@ class Solution:
         prefix_sum = []
         curr_digits = ""
         curr_sum = 0
+        def convert_digits_to_int(digits):
+            answer = 0
+            curr = 1
+            digits_reverse = digits[::-1]
+            for i in range(len(digits)):
+                answer += int(digits_reverse[i]) * curr
+                curr *= 10
+            return answer
+        
         for digit in s:
             if digit != "0":
                 curr_digits += digit
@@ -18,12 +27,12 @@ class Solution:
                 if prefix_digits[right] == "":
                     answer.append(0)
                 else:
-                    answer.append((int(prefix_digits[right]) * prefix_sum[right]) % MOD)
+                    answer.append((convert_digits_to_int(prefix_digits[right]) * prefix_sum[right]) % MOD)
             else:
                 digits = prefix_digits[right][len(prefix_digits[left - 1]):]
                 if digits == "":
                     answer.append(0)
                 else:
                     curr_sum = prefix_sum[right] - prefix_sum[left - 1]
-                    answer.append((int(digits) * curr_sum) % MOD)
+                    answer.append((convert_digits_to_int(digits) * curr_sum) % MOD)
         return answer
