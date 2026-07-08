@@ -8,7 +8,7 @@ class Solution:
         for digit in s:
             if digit != "0":
                 curr_sum += int(digit)
-                curr_digits_int = (curr_digits_int * 10 + int(digit)) % MOD
+                curr_digits_int = (curr_digits_int * 10 + int(digit))
             prefix_sum.append(curr_sum)
             prefix_digits_int.append(curr_digits_int)
 
