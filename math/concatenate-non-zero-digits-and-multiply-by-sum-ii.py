@@ -11,12 +11,14 @@ class Solution:
                 curr_sum += int(digit)
             prefix_digits.append(curr_digits)
             prefix_sum.append(curr_sum)
-        print(prefix_digits)
-        print(prefix_sum)
+
         answer = []
         for left, right in queries:
             if left == 0:
-                answer.append((int(prefix_digits[right]) * prefix_sum[right]) % MOD)
+                if prefix_digits[right] == "":
+                    answer.append(0)
+                else:
+                    answer.append((int(prefix_digits[right]) * prefix_sum[right]) % MOD)
             else:
                 digits = prefix_digits[right][len(prefix_digits[left - 1]):]
                 if digits == "":
