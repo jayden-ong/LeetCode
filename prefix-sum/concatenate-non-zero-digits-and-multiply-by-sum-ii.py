@@ -5,14 +5,14 @@ class Solution:
         prefix_sum = []
         curr_sum = 0
         curr_length, prefix_length = 0, []
-        curr_pow, ten_pows = 1, [1]
+        ten_pows = [1] * 100001
+        for i in range(1, 100001):
+            ten_pows[i] = (ten_pows[i - 1] * 10) % MOD
         for digit in s:
             if digit != "0":
                 curr_sum += int(digit)
                 curr_digits_int = (curr_digits_int * 10 + int(digit))
                 curr_length += 1
-                curr_pow *= 10
-                ten_pows.append(curr_pow)
             prefix_sum.append(curr_sum)
             prefix_digits_int.append(curr_digits_int)
             prefix_length.append(curr_length)
