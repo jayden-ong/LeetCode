@@ -22,8 +22,10 @@ class Solution:
             actual_left_value = prefix_sum[val_to_new_index[index_to_old_val[left]]]
             actual_right_value = prefix_sum[val_to_new_index[index_to_old_val[right]]]
             if abs(actual_right_value - actual_left_value) == abs(val_to_new_index[index_to_old_val[right]] - val_to_new_index[index_to_old_val[left]]):
-                if maxDiff == 0:
+                if left == right:
                     answer.append(0)
+                elif index_to_old_val[right] == index_to_old_val[left]:
+                    answer.append(1)
                 else:
                     answer.append(math.ceil(abs(index_to_old_val[right] - index_to_old_val[left]) / maxDiff))
             else:
