@@ -21,7 +21,7 @@ class Solution:
         blocks.append(curr_count)
         blocks.append(1)
 
-        if len(blocks) <= 4:
+        if len(blocks) <= 4 or len(blocks) == 5 and starting == '1':
             return active
         
         actual_start = 2
