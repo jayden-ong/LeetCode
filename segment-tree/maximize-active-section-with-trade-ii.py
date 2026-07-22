@@ -1,7 +1,10 @@
 class Solution:
     def maxActiveSectionsAfterTrade(self, s: str, queries: List[List[int]]) -> List[int]:
         blocks = [('1', 1)]
-        active = s[0] == '1'
+        active = 0
+        if s[0] == '1':
+            active += 1
+        
         curr_block = 1
         num_behind = 0
         curr, curr_count = s[0], 1
