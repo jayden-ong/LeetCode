@@ -52,8 +52,11 @@ class Solution:
                 answer = max(answer, active + blocks[i - 1][1] + blocks[i + 1][1])
             return answer
 
+        answers_dict = {}
         answer = []
         for left, right in queries:
-            sub_blocks = get_sub_blocks(left, right)
-            answer.append(solve(sub_blocks))
+            if (left, right) not in answers_dict:
+                sub_blocks = get_sub_blocks(left, right)
+                answers_dict[(left, right)] = solve(sub_blocks)
+            answer.append(answers_dict[(left, right)])
         return answer
