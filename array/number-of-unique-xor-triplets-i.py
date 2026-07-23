@@ -2,4 +2,6 @@ class Solution:
     def uniqueXorTriplets(self, nums: List[int]) -> int:
         if len(nums) <= 2:
             return len(nums)
-        return len(nums) + 1
+        
+        highest_bit = math.floor(math.log(len(nums)))
+        return pow(2, highest_bit + 1)
