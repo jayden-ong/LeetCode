@@ -19,17 +19,11 @@ class Solution:
             return answer
         
         for i in range(n):
-            invalid = False
-
             if i not in visited:
                 for dest in edges_dict[i]:
                     if dest in visited:
-                        invalid = True
-                        break
+                        return [i for i in range(n)]
             
-                if not invalid:
-                    answer.append(i)
-        
-        if answer == []:
-            return [i for i in range(n)]
+                answer.append(i)
+
         return answer
