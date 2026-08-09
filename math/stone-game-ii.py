@@ -25,4 +25,3 @@ class Solution:
             return max_points
             
         return determine_stones(0, 1, sum(piles))
-        
