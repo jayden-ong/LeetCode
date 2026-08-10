@@ -1,5 +1,6 @@
 class Solution:
     def winnerSquareGame(self, n: int) -> bool:
+        '''
         dp = {}
         def can_win(num_stones):
             if math.isqrt(num_stones) ** 2 == num_stones:
@@ -18,4 +19,16 @@ class Solution:
                     return True
             return False
         return can_win(n)
-                
+        '''
+        dp = defaultdict(bool)
+        for i in range(n + 1):
+            if dp[i]:
+                continue
+            
+            for j in range(1, math.isqrt(n - i) + 1):
+                dp[i + j * j] = True
+            
+            if dp[n]:
+                return True
+        
+        return False
