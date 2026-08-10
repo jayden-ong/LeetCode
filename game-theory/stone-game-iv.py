@@ -9,8 +9,8 @@ class Solution:
                 return dp[num_stones]
             
             for i in range(int(math.sqrt(num_stones)), 0, -1):
-                if i in dp:
-                    curr_answer = dp[i]
+                if i ** 2 in dp:
+                    curr_answer = dp[i ** 2]
                 else:
                     curr_answer = not can_win(num_stones - i ** 2)
                 
