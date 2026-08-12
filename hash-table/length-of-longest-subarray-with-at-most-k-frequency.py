@@ -1,7 +1,7 @@
 class Solution:
     def maxSubarrayLength(self, nums: List[int], k: int) -> int:
         right = 0
-        answer = 0
+        answer = 1
         curr_freq = defaultdict(int)
         violation = False
         for i in range(len(nums)):
