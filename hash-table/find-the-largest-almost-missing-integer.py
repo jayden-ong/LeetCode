@@ -4,7 +4,9 @@ class Solution:
         for num in nums:
             nums_dict[num] += 1
         
-        if k == 1:
+        if k == len(nums):
+            return max(nums)
+        elif k == 1:
             answer = -1
             for num in nums_dict:
                 if nums_dict[num] == 1:
