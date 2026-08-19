@@ -24,8 +24,9 @@ class Solution:
 
         answer = 0
         for i in range(1, n + 1):
-            if check_first_block(i) and check_third_block(i):
+            first_res, second_res, third_res = check_first_block(i), check_second_block(i), check_third_block(i)
+            if first_res and third_res:
                 answer += 2
-            elif check_first_block(i) or check_second_block(i) or check_third_block(i):
+            elif first_res or second_res or third_res:
                 answer += 1
         return answer
