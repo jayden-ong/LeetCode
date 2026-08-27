@@ -37,7 +37,9 @@ class Solution:
                     success = True
                     break
             
-            print(chars)
             if not success:
                 return answer
-        return curr_answer
+        
+        if curr_answer > target:
+            return curr_answer
+        return answer
