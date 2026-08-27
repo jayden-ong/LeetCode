@@ -17,9 +17,6 @@ class Solution:
                     curr_answer += (chars[i] - 1) * chr(i + ord('a'))
                 else:
                     curr_answer += chars[i] * chr(i + ord('a'))
-            
-        if curr_answer == "":
-            return ""
         
         if chars[ord(target[0]) - ord('a')] == 0:
             return curr_answer
