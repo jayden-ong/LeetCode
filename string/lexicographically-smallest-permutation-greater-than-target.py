@@ -1,42 +1,44 @@
 class Solution:
     def lexGreaterPermutation(self, s: str, target: str) -> str:
-        # Idea: choose next smallest char that comes after target's char
-        chars = [0] * 26
-        for char in s:
-            chars[ord(char) - ord('a')] += 1
-        
-        answer = ""
-        prev_chars = ""
-        for i in range(ord(target[0]) - ord('a') + 1):
-            prev_chars += chars[i] * chr(i + ord('a'))
-        curr_answer = ""
-        for i in range(ord(target[0]) - ord('a') + 1, 26):
-            if chars[i] > 0:
-                if curr_answer == "":
-                    curr_answer = chr(i + ord('a')) + prev_chars
-                    curr_answer += (chars[i] - 1) * chr(i + ord('a'))
-                else:
-                    curr_answer += chars[i] * chr(i + ord('a'))
-        
-        if chars[ord(target[0]) - ord('a')] == 0:
-            return curr_answer
-        
-        answer = curr_answer
-        # If you match the first letter in target, have to make sure you can still complete string
-        # If you don't you can just choose the smallest string after the smallest letter after char in target
-        curr_answer = ""
-        for char in target:
-            success = False
-            for i in range(ord(char) - ord('a'), 26):
-                if chars[i] > 0:
-                    curr_answer += chr(i + ord('a'))
-                    chars[i] -= 1
-                    success = True
-                    break
-            
-            if not success:
-                return answer
-        
-        if curr_answer > target:
-            return curr_answer
-        return answer
+        # COME BACK AND SOLVE ON YOUR OWN
+        cnt = [0] * 26
+        for c in s:
+            cnt[ord(c) - ord("a")] += 1
+
+        n = len(target)
+        res = []
+
+        for i in range(n):
+            t = ord(target[i]) - ord("a")
+
+            # Try placing the same character as target[i]
+            if cnt[t] > 0:
+                cnt[t] -= 1
+                # 检查能否成功
+                if self.can_greater(cnt, target[i + 1 :]):
+                    res.append(target[i])
+                    continue
+                cnt[t] += 1
+
+            # Find a larger character
+            for c in range(t + 1, 26):
+                if cnt[c] > 0:
+                    cnt[c] -= 1
+                    res.append(chr(c + ord("a")))
+                    # Lexicographically smallest permutation of remaining characters
+                    res.append(
+                        "".join(chr(j + ord("a")) * cnt[j] for j in range(26))
+                    )
+                    return "".join(res)
+
+            # No feasible solution found
+            return ""
+
+        return ""
+
+    def can_greater(self, cnt: list[int], suffix: str) -> bool:
+        # Construct the largest string from largest to smallest
+        max_str = "".join(
+            chr(i + ord("a")) * cnt[i] for i in range(25, -1, -1) if cnt[i] > 0
+        )
+        return max_str > suffix
