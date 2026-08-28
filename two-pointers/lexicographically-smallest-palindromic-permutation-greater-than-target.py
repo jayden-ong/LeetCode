@@ -17,8 +17,6 @@ class Solution:
                 if ''.join(curr_answer) > target:
                     return ''.join(curr_answer)
                 return ""
-            print(chars)
-            print(curr_answer)
             for i in range(26):
                 if ''.join(curr_answer[:curr_index]) + chr(i + ord('a')) >= target[:curr_index + 1] and (chars[i] >= 2 or (chars[i] == 1 and curr_index == len(target) // 2)):
                     curr_answer[curr_index] = curr_answer[len(curr_answer) - 1 - curr_index] = chr(i + ord('a'))
