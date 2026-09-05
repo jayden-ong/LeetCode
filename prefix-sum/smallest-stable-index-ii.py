@@ -9,7 +9,6 @@ class Solution:
             curr_min = min(curr_min, nums[i])
             mins.append(curr_min)
         mins = mins[::-1]
-        print(mins)
             
         curr_max = nums[0]
         curr_min = mins[0]
