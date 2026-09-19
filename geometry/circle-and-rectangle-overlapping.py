@@ -1,5 +1,6 @@
 class Solution:
     def checkOverlap(self, radius: int, xCenter: int, yCenter: int, x1: int, y1: int, x2: int, y2: int) -> bool:
+        '''
         def check_overlap(x, y):
             return x1 <= x <= x2 and y1 <= y <= y2
         
@@ -16,3 +17,11 @@ class Solution:
             if check_within_circle(x, y):
                 return True
         return False
+        '''
+        if (x1 < (xCenter - radius) and x2 < (xCenter + radius)) or (x1 > (xCenter - radius) and x2 > (xCenter + radius)):
+            return False
+        
+        if (y1 < (yCenter - radius) and y2 < (yCenter + radius)) or (y1 > (yCenter - radius) and y2 > (yCenter + radius)):
+            print('y')
+            return False
+        return True
