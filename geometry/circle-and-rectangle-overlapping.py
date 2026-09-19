@@ -18,9 +18,17 @@ class Solution:
                 return True
         return False
         '''
+        def check_within_circle(x, y):
+            return ((x - xCenter) ** 2 + (y - yCenter) ** 2) ** 0.5 <= radius
+        
         if (x1 < (xCenter - radius) and x2 < (xCenter - radius)) or (x1 > (xCenter + radius) and x2 > (xCenter + radius)):
             return False
         
         if (y1 < (yCenter - radius) and y2 < (yCenter - radius)) or (y1 > (yCenter + radius) and y2 > (yCenter + radius)):
             return False
-        return True
+
+        rectangle_points = [(x1, y1), (x1, y2), (x2, y1), (x2, y2)]
+        for x, y in rectangle_points:
+            if check_within_circle(x, y):
+                return True
+        return False
