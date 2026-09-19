@@ -18,10 +18,9 @@ class Solution:
                 return True
         return False
         '''
-        if (x1 < (xCenter - radius) and x2 < (xCenter + radius)) or (x1 > (xCenter - radius) and x2 > (xCenter + radius)):
+        if (x1 < (xCenter - radius) and x2 < (xCenter - radius)) or (x1 > (xCenter + radius) and x2 > (xCenter + radius)):
             return False
         
-        if (y1 < (yCenter - radius) and y2 < (yCenter + radius)) or (y1 > (yCenter - radius) and y2 > (yCenter + radius)):
-            print('y')
+        if (y1 < (yCenter - radius) and y2 < (yCenter - radius)) or (y1 > (yCenter + radius) and y2 > (yCenter + radius)):
             return False
         return True
